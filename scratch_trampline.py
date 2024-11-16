@@ -62,6 +62,372 @@ def get_project(project_id):
         response = requests.put(scratch_api_url, headers=headers, json=request.json)
         return (response.text, response.status_code, {'Content-Type': response.headers.get('Content-Type')})
 
+@app.route('/studios/<int:studioid>', methods=['GET', 'OPTIONS'])
+def get_studio(studioid):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/studios/{studioid}'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/studios/<int:studioid>/activity', methods=['GET', 'OPTIONS'])
+def get_studio_activity(studioid):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        if request.args.get('dateLimit'):
+            datelimit = "?dateLimit=" + request.args.get('dateLimit')
+        else:
+            datelimit = ""
+        scratch_api_url = f'https://api.scratch.mit.edu/studios/{studioid}/activity{datelimit}'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/studios/<int:studioid>/comments', methods=['GET', 'OPTIONS'])
+def get_studio_comments(studioid):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/studios/{studioid}/comments'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/studios/<int:studioid>/comments/<comment_id>', methods=['GET', 'OPTIONS'])
+def get_studio_comment(studioid, comment_id):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/studios/{studioid}/comments/{comment_id}'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/studios/<int:studioid>/comments/<comment_id>/replies', methods=['GET', 'OPTIONS'])
+def get_studio_comment_replies(studioid, comment_id):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/studios/{studioid}/comments/{comment_id}/replies'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/studios/<int:studioid>/curators', methods=['GET', 'OPTIONS'])
+def get_studio_curators(studioid):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/studios/{studioid}/curators'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/studios/<int:studioid>/managers', methods=['GET', 'OPTIONS'])
+def get_studio_managers(studioid):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/studios/{studioid}/managers'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/studios/<int:studioid>/projects', methods=['GET', 'OPTIONS'])
+def get_studio_projects(studioid):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/studios/{studioid}/projects'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/users/<string:username>', methods=['GET', 'OPTIONS'])
+def get_user(username):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/users/{username}'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+
+@app.route('/users/<string:username>/favorites', methods=['GET', 'OPTIONS'])
+def get_user_favorites(username):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/users/{username}/favorites'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/users/<string:username>/followers', methods=['GET', 'OPTIONS'])
+def get_user_followers(username):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/users/{username}/followers'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/users/<string:username>/following', methods=['GET', 'OPTIONS'])
+def get_user_following(username):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/users/{username}/following'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/users/<string:username>/following/studios/projects', methods=['GET', 'OPTIONS'])
+def get_user_following_studio_projects(username):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/users/{username}/following/studios/projects'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/users/<string:username>/following/users/activity', methods=['GET', 'OPTIONS'])
+def get_user_following_activity(username):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/users/{username}/following/users/activity'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/users/<string:username>/following/users/loves', methods=['GET', 'OPTIONS'])
+def get_user_following_loves(username):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/users/{username}/following/users/loves'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/users/<string:username>/following/users/projects', methods=['GET', 'OPTIONS'])
+def get_user_following_projects(username):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/users/{username}/following/users/loves'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/users/<string:username>/messages/count', methods=['GET', 'OPTIONS'])
+def get_user_message_count(username):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/users/{username}/messages/count'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/users/<string:username>/messages', methods=['GET', 'OPTIONS'])
+def get_user_messages(username):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/users/{username}/messages'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/users/<string:username>/messages/admin', methods=['GET', 'OPTIONS'])
+def get_user_message_admin(username):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/users/{username}/messages/admin'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
 @app.route('/projects/<int:project_id>/loves/user/<string:username>', methods=['GET', 'OPTIONS'])
 def get_project_loves(project_id, username):
     """Fetch project data from Scratch API."""
@@ -84,6 +450,13 @@ def get_project_remixes(project_id):
     #response = requests.get(scratch_api_url)
 
     return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/proxy/comments/project/<int:project_id>', methods=['POST', 'OPTIONS'])
+def proxy_comments(project_id):
+    """Proxy the request to the Scratch API."""
+    scratch_api_url = f'https://api.scratch.mit.edu/proxy/comments/project/{project_id}'
+    response = requests.post(scratch_api_url, headers={'x-token': request.headers.get('x-token')}, json=request.json)
+    return (response.text, response.status_code, {'Content-Type': response.headers.get('Content-Type')})
 
 @app.route('/projects/<int:project_id>/favorites/user/<string:username>', methods=['GET', 'OPTIONS'])
 def get_project_favorites(project_id, username):
@@ -125,4 +498,4 @@ def session():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
