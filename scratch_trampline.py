@@ -409,6 +409,63 @@ def get_user_messages(username):
 
         return (response, status_code, {'Content-Type': content_type})
 
+@app.route('/users/<string:username>/projects', methods=['GET', 'OPTIONS'])
+def get_user_projects(username):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/users/{username}/projects'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/users/<string:username>/projects/recentlyviewed', methods=['GET', 'OPTIONS'])
+def get_user_projects_recentlyviewed(username):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/users/{username}/projects/recentlyviewed'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
+@app.route('/users/<string:username>/projects/<int:projectid>/studios', methods=['GET', 'OPTIONS'])
+def get_project_studios(username, projectid):
+    if request.method == 'GET':
+        """Fetch project data from Scratch API."""
+        scratch_api_url = f'https://api.scratch.mit.edu/users/{username}/projects/{projectid}/studios'
+        xtoken = request.headers.get('x-token', None)
+        if not xtoken:
+            header = {}
+        else:
+            header = {
+                'x-token': xtoken
+            }
+
+        # Forward the request to the Scratch API
+        response, content_type, status_code = asyncio.run(fetch_data(scratch_api_url, headers=header))
+        #response = requests.get(scratch_api_url)
+
+        return (response, status_code, {'Content-Type': content_type})
+
 @app.route('/users/<string:username>/messages/admin', methods=['GET', 'OPTIONS'])
 def get_user_message_admin(username):
     if request.method == 'GET':
